@@ -2,6 +2,7 @@
 
 ### About
 This is the backend repo of my sport/volleyball manager mobile app (react native). This aims to help a volleyball coach to manage its players during the season.
+[Exemple of the stack](https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-express/src/index.ts)
 
 Possible features:
 - Presences
