@@ -6,6 +6,9 @@
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
   "dependencies": {
     "@prisma/client": "^5.4.1",
     "@types/node": "^20.8.3",

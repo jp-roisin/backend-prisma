@@ -15,17 +15,22 @@ Run the DB
 ```shell
 docker-compose up
 ```
+### Express
+Run the Express service
+```shell
+yarn run dev
+```
 
 ### Prisma:
 - Run Prisma studio
 ```shell
-y prisma studio
+yarn prisma studio
 ```
 - Seed the DB
 ```shell
-y prisma db seed
+yarn prisma db seed
 ```
 - Using Prisma Migrate 
 ```shell
-y prisma migrate dev
+yarn prisma migrate dev
 ```
