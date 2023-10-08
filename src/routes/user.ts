@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 router.get("/new", async (req, res) => {
   const { body } = req;
   try {
-    const result = await createUser(body);
+    const result = await createUser(body); // body is any
     res.send(result);
   } catch (error) {
     res.send(error);
@@ -48,7 +48,7 @@ router
       body,
     } = req;
     try {
-      const result = updateUser(id, body);
+      const result = updateUser(id, body); // body is any
       res.send(result);
     } catch (error) {
       res.send(error);
