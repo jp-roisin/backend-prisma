@@ -1,12 +1,14 @@
 import express from "express";
+import userRouter from "./routes/user";
 
 const app = express();
+
 const port = 3000;
+// app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// Routes
+app.use("/user", userRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.listen(port);
