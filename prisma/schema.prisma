@@ -11,13 +11,84 @@ datasource db {
 }
 
 // --------------------------------------
+enum Role {
+  PLAYER
+  COACH
+  ADMIN
+}
 
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Division {
+  PROVINCIAL_1
+  PROVINCIAL_2
+  PROVINCIAL_3
+  PROVINCIAL_4
+  PROMOTION_A
+  PROMOTION_B
+  PROMOTION_C
+}
+
+enum Distinction {
+  A
+  B
+}
+
+enum Position {
+  MIDDLE_BLOCKER
+  OPPOSITE
+  OUTSIDE_HITTER
+  LIBERO
+  SETTER
+  UNDEFINED
+}
+
+// --------------------------------------
 model User {
-  id        Int      @id @default(autoincrement())
-  uuid      String   @unique @default(uuid())
-  email     String   @unique
-  name      String?
+  id        Int        @id @default(autoincrement())
+  uuid      String     @unique @default(uuid())
+  email     String     @unique
+  lastName  String?
+  firstName String?
+  pseudo    String?
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  role      Role       @default(PLAYER)
+  gender    Gender
+  birthDate DateTime
+  positions Position[]
+  height    Int?
+
+  teams       Team[] // Many to many relation
+  franchise   Franchise? @relation(fields: [franchiseId], references: [id])
+  franchiseId Int?
+}
+
+model Franchise {
+  id                 Int      @id @default(autoincrement())
+  registrationNumber Int      @unique
+  name               String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  users              User[]
+
+  teams Team[]
+}
+
+model Team {
+  id          Int         @id @default(autoincrement())
+  name        String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  gender      Gender
+  division    Division
+  distinction Distinction @default(A)
+
+  users       User[] // Many to many relation
+  franchise   Franchise @relation(fields: [franchiseId], references: [id])
+  franchiseId Int
 }
