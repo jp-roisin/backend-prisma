@@ -40,3 +40,32 @@ export const deleteUser = async (uuid: string) => {
 export const getUsers = async () => {
   return await prisma.user.findMany();
 };
+
+export async function authenticateUser(email: string, password: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      // User not found
+      return null;
+    }
+
+    // Compare the provided password with the stored hashed password
+    const dbPassword = user.password;
+    // const passwordMatch = await comparePasswords(password, user.password);
+
+    if (dbPassword === password) {
+      // Passwords match, user is authenticated
+      return user;
+    } else {
+      // Passwords don't match
+      return null;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
