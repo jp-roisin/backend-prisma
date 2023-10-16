@@ -24,7 +24,7 @@ async function main() {
       gender: "MALE",
       height: 193,
       birthDate: new Date("1994-11-02"),
-      position: ["OPPOSITE"],
+      // position: ["OPPOSITE"],
       teams: {
         create: [
           {

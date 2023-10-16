@@ -2,13 +2,13 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import { authenticateUser, createUser } from "../../prisma/utils/user";
 
-const auth = express.Router();
+const authRouter = express.Router();
 
 const secret = process.env.JWT_SECRET ?? "";
 const expiresIn = process.env.JWT_EXPIRES_IN ?? "24h";
 
 // User Login
-auth.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await authenticateUser(username, password);
@@ -28,7 +28,7 @@ auth.post("/login", async (req, res) => {
 });
 
 // User Create
-auth.get("/register", async (req, res) => {
+authRouter.post("/register", async (req, res) => {
   const { body } = req;
   try {
     const result = await createUser(body); // body is any
@@ -36,8 +36,11 @@ auth.get("/register", async (req, res) => {
     const token = jwt.sign({ user: "user_id" }, secret, {
       expiresIn,
     });
+    console.log(token);
     res.send({ result, token });
   } catch (error) {
     res.send(error);
   }
 });
+
+export default authRouter;

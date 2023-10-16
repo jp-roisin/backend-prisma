@@ -58,8 +58,8 @@ model User {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   role      Role       @default(PLAYER)
-  gender    Gender
-  birthDate DateTime
+  gender    Gender?
+  birthDate DateTime?
   positions Position[]
   height    Int?
 

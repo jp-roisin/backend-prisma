@@ -1,6 +1,6 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import userRouter from "./routes/user";
+import authRouter from "./routes/auth";
 import dotenv from "dotenv";
 import { authenticateJWT } from "./middlewares/authenticateJWT";
 
@@ -15,6 +15,6 @@ app.use(express.json());
 
 // Routes
 app.use("/user", userRouter, authenticateJWT);
-app.use("/auth", userRouter);
+app.use("/auth", authRouter);
 
 app.listen(port);

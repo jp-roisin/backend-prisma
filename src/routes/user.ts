@@ -1,5 +1,4 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import {
   deleteUser,
   getUser,
@@ -7,10 +6,10 @@ import {
   updateUser,
 } from "../../prisma/utils/user";
 
-const router = express.Router();
+const userRouter = express.Router();
 
 // Users List
-router.get("/", async (req, res) => {
+userRouter.get("/", async (req, res) => {
   try {
     const result = await getUsers();
     res.send(result);
@@ -20,7 +19,7 @@ router.get("/", async (req, res) => {
 });
 
 // User Details
-router
+userRouter
   .route("/:id")
   .get(async (req, res) => {
     const { id } = req.params;
@@ -53,4 +52,4 @@ router
     }
   });
 
-export default router;
+export default userRouter;
