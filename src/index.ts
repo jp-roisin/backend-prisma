@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./routes/user";
 import authRouter from "./routes/auth";
+import jwtRouter from "./routes/jwt";
 import dotenv from "dotenv";
 import { authenticateJWT } from "./middlewares/authenticateJWT";
 
@@ -16,5 +17,6 @@ app.use(express.json());
 // Routes
 app.use("/user", userRouter, authenticateJWT);
 app.use("/auth", authRouter);
+app.use("/jwt", jwtRouter); // Todo remove when auth is implemented
 
 app.listen(port);
