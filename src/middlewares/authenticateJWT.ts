@@ -18,6 +18,7 @@ export const authenticateJWT = (
     // req.user = decoded;
     console.log(decoded);
     next();
+    return;
   } catch (error) {
     return res.status(401).json({ message: "Token is invalid" });
   }
