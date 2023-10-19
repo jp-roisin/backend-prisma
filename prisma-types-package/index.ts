@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+// import * as PrismaTypes from '@prisma/client'; // eslint-disable-line no-unused-vars
+import * as PrismaTypes from "../node_modules/.prisma/client/index.d.ts"
 
-const prisma = new PrismaClient();
-
-export { prisma };
+export * from PrismaTypes;
