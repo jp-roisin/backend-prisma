@@ -1,0 +1,8 @@
+{
+  "name": "prisma-types-package",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jp-roisin",
+  "license": "MIT",
+  "private": false
+}
